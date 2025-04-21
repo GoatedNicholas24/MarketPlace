@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.HomeMenuPage"
+             Title="Menu"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="15">
+            <!-- Cart -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+                   CornerRadius="10"
+                   Padding="15"
+                   HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CartTapped"/>
+                </Frame.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15">
+                    
+                    <VerticalStackLayout>
+                        <Label Text="Cart" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"/>
+                        <Label Text="View your shopping cart"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Wishlist -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+                   CornerRadius="10"
+                   Padding="15"
+                   HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="WishlistTapped"/>
+                </Frame.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15">
+                   
+                    <VerticalStackLayout>
+                        <Label Text="Wishlist" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"/>
+                        <Label Text="View your saved items"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Order History -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+                   CornerRadius="10"
+                   Padding="15"
+                   HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OrdersTapped"/>
+                </Frame.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15">
+                     
+                    <VerticalStackLayout>
+                        <Label Text="Order History" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"/>
+                        <Label Text="View your past orders"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Chat -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+                   CornerRadius="10"
+                   Padding="15"
+                   HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ChatTapped"/>
+                </Frame.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15">
+                   
+                    <VerticalStackLayout>
+                        <Label Text="Chat" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"/>
+                        <Label Text="View your conversations"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- My Shop -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+                   CornerRadius="10"
+                   Padding="15"
+                   HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="MyShopTapped"/>
+                </Frame.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15">
+                    
+                    <VerticalStackLayout>
+                        <Label Text="My Shop" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"/>
+                        <Label Text="Manage your shop"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Settings -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+                   CornerRadius="10"
+                   Padding="15"
+                   HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SettingsTapped"/>
+                </Frame.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15">
+                    
+                    <VerticalStackLayout>
+                        <Label Text="Settings" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"/>
+                        <Label Text="App settings and preferences"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Log Out -->
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+                   CornerRadius="10"
+                   Padding="15"
+                   HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="LogOutTapped"/>
+                </Frame.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15">
+            
+                    <VerticalStackLayout>
+                        <Label Text="Log Out" 
+                               FontSize="16" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"/>
+                        <Label Text="Sign out of your account"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MarketPlace"
+             x:Class="MarketPlace.MyShopPage"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#1A1A1A}">
+
+    <Grid RowDefinitions="Auto, *">
+        <!-- Header -->
+        <Frame Grid.Row="0" 
+               Padding="15" 
+               CornerRadius="0" 
+               BackgroundColor="{AppThemeBinding Light=#4CAF50, Dark=#2E7D32}"
+               HasShadow="True">
+            <HorizontalStackLayout>
+                <Label Text="My Shop" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       VerticalOptions="Center"/>
+                
+            </HorizontalStackLayout>
+        </Frame>
+
+        <!-- Content Area -->
+        <Grid Grid.Row="1" Padding="15">
+            <ScrollView>
+                <VerticalStackLayout Spacing="20">
+                    <!-- Quick Stats -->
+                    <Frame CornerRadius="15" 
+                           Padding="20" 
+                           BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#2D2D2D}"
+                           HasShadow="True">
+                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*,*,*">
+                            <!-- Sales Card -->
+                            <Frame Grid.Row="0" Grid.Column="0"
+                                   CornerRadius="10"
+                                   Padding="15"
+                                   BackgroundColor="{AppThemeBinding Light=#E8F5E9, Dark=#1B5E20}"
+                                   HasShadow="True">
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="Total Sales" 
+                                           FontSize="14" 
+                                           TextColor="{AppThemeBinding Light=#2E7D32, Dark=White}"/>
+                                    <Label x:Name="TotalSalesLabel" 
+                                           Text="0" 
+                                           FontSize="24" 
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light=#2E7D32, Dark=White}"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Revenue Card -->
+                            <Frame Grid.Row="0" Grid.Column="1"
+                                   CornerRadius="10"
+                                   Padding="15"
+                                   BackgroundColor="{AppThemeBinding Light=#E3F2FD, Dark=#0D47A1}"
+                                   HasShadow="True">
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="Revenue" 
+                                           FontSize="14" 
+                                           TextColor="{AppThemeBinding Light=#1565C0, Dark=White}"/>
+                                    <Label x:Name="RevenueLabel" 
+                                           Text="0" 
+                                           FontSize="24" 
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light=#1565C0, Dark=White}"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Pending Orders Card -->
+                            <Frame Grid.Row="0" Grid.Column="2"
+                                   CornerRadius="10"
+                                   Padding="15"
+                                   BackgroundColor="{AppThemeBinding Light=#FFF3E0, Dark=#E65100}"
+                                   HasShadow="True">
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="Pending Orders" 
+                                           FontSize="14" 
+                                           TextColor="{AppThemeBinding Light=#E65100, Dark=White}"/>
+                                    <Label x:Name="PendingOrdersLabel" 
+                                           Text="0" 
+                                           FontSize="24" 
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light=#E65100, Dark=White}"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Quick Actions -->
+                            <Grid Grid.Row="1" Grid.ColumnSpan="3" 
+                                  ColumnDefinitions="*,*,*,*" 
+                                  RowDefinitions="Auto,Auto"
+                                  Padding="0,15,0,0"
+                                   ColumnSpacing="10"
+                                  RowSpacing="10">
+                                
+                                <!-- Add Product -->
+                                <Frame x:Name="AddProductFrame"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       BackgroundColor="{AppThemeBinding Light=#E8F5E9, Dark=#1B5E20}"
+                                       HasShadow="True"
+                                       Grid.Column="1" Grid.Row="0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnAddProductClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                                        <Image Source="add_product_icon.png"
+                                               HeightRequest="30"
+                                               WidthRequest="30"/>
+                                        <Label Text="Add Product" 
+                                               FontSize="12" 
+                                               HorizontalOptions="Center"
+                                               TextColor="{AppThemeBinding Light=#2E7D32, Dark=White}"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <!-- Edit Products -->
+                                <Frame x:Name="EditProductsFrame"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       BackgroundColor="{AppThemeBinding Light=#E3F2FD, Dark=#0D47A1}"
+                                       HasShadow="True"
+                                        Grid.Column="2" Grid.Row="0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnEditProductClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                                        <Image 
+                                               HeightRequest="30"
+                                               WidthRequest="30"/>
+                                        <Label Text="Edit Products" 
+                                               FontSize="12" 
+                                               HorizontalOptions="Center"
+                                               TextColor="{AppThemeBinding Light=#1565C0, Dark=White}"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <!-- Orders -->
+                                <Frame x:Name="OrdersFrame"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       BackgroundColor="{AppThemeBinding Light=#FFF3E0, Dark=#E65100}"
+                                       HasShadow="True"  Grid.Column="3" Grid.Row="0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnOrdersClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                                        <Image Source="orders_icon.png"
+                                               HeightRequest="30"
+                                               WidthRequest="30"/>
+                                        <Label Text="Orders" 
+                                               FontSize="12" 
+                                               HorizontalOptions="Center"
+                                               TextColor="{AppThemeBinding Light=#E65100, Dark=White}"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <!-- Wallet -->
+                                <Frame x:Name="WalletFrame"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       BackgroundColor="{AppThemeBinding Light=#F3E5F5, Dark=#4A148C}"
+                                       HasShadow="True"  Grid.Column="0" Grid.Row="1">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnWalletClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                                        <Image Source="wallet_icon.png"
+                                               HeightRequest="30"
+                                               WidthRequest="30"/>
+                                        <Label Text="Wallet" 
+                                               FontSize="12" 
+                                               HorizontalOptions="Center"
+                                               TextColor="{AppThemeBinding Light=#7B1FA2, Dark=White}"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <!-- Chat -->
+                                <Frame x:Name="ChatFrame"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       BackgroundColor="{AppThemeBinding Light=#E0F7FA, Dark=#006064}"
+                                       HasShadow="True"
+                                        Grid.Column="1" Grid.Row="1">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnChatClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                                        <Image Source="chat_icon.png"
+                                               HeightRequest="30"
+                                               WidthRequest="30"/>
+                                        <Label Text="Chat" 
+                                               FontSize="12" 
+                                               HorizontalOptions="Center"
+                                               TextColor="{AppThemeBinding Light=#00838F, Dark=White}"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <!-- Support -->
+                                <Frame x:Name="SupportFrame"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       BackgroundColor="{AppThemeBinding Light=#FFEBEE, Dark=#B71C1C}"
+                                       HasShadow="True"
+                                        Grid.Column="2" Grid.Row="1">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnReportIssueClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                                        <Image Source="support_icon.png"
+                                               HeightRequest="30"
+                                               WidthRequest="30"/>
+                                        <Label Text="Support" 
+                                               FontSize="12" 
+                                               HorizontalOptions="Center"
+                                               TextColor="{AppThemeBinding Light=#C62828, Dark=White}"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <!-- FAQ -->
+                                <Frame x:Name="FAQFrame"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       BackgroundColor="{AppThemeBinding Light=#FFF8E1, Dark=#F57F17}"
+                                       HasShadow="True"
+                                        Grid.Column="3" Grid.Row="1">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnFAQHelpClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                                        <Image Source="faq_icon.png"
+                                               HeightRequest="30"
+                                               WidthRequest="30"/>
+                                        <Label Text="FAQ" 
+                                               FontSize="12" 
+                                               HorizontalOptions="Center"
+                                               TextColor="{AppThemeBinding Light=#F9A825, Dark=White}"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <!-- Settings -->
+                                <Frame x:Name="SettingsFrame"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       BackgroundColor="{AppThemeBinding Light=#ECEFF1, Dark=#37474F}"
+                                       HasShadow="True"
+                                        Grid.Column="0" Grid.Row="0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSettingsClicked"/>
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                                        <Image Source="settings_icon.png"
+                                               HeightRequest="30"
+                                               WidthRequest="30"/>
+                                        <Label Text="Settings" 
+                                               FontSize="12" 
+                                               HorizontalOptions="Center"
+                                               TextColor="{AppThemeBinding Light=#455A64, Dark=White}"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </Grid>
+                        </Grid>
+                    </Frame>
+
+                    <!-- Recent Activity -->
+                    <Frame CornerRadius="15" 
+                           Padding="20" 
+                           BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#2D2D2D}"
+                           HasShadow="True">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Recent Activity" 
+                                   FontSize="18" 
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light=#4CAF50, Dark=White}"/>
+                            <BoxView HeightRequest="1" 
+                                    BackgroundColor="{AppThemeBinding Light=#E0E0E0, Dark=#424242}"/>
+                            <!-- Recent Activity Items will be added here -->
+                        </VerticalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.EditProductDetailsPage"
+             Title="EditProductDetailsPage">
+    <Grid>
+        <Frame x:Name="EditProductPopup" IsVisible="False">
+
+            <VerticalStackLayout>
+
+                <ScrollView Orientation="Vertical" HeightRequest="650">
+                    <VerticalStackLayout Padding="20" Spacing="15">
+
+                        <!-- Product Name -->
+                        <Label Text="Product Name:" FontSize="16"/>
+                        <Entry x:Name="ProductNameEntry" Placeholder="Enter product name"/>
+
+                        <!-- Product Category -->
+                        <Label Text="Category:" FontSize="16"/>
+                        <Picker x:Name="CategoryPicker" Title="Select category">
+                            <Picker.Items>
+                                <x:String>Clothing</x:String>
+                                <x:String>Electronics</x:String>
+                                <x:String>Clothing</x:String>
+                                <x:String>Electronics</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- Product Description -->
+                        <Label Text="Description:" FontSize="16"/>
+                        <Editor x:Name="DescriptionEditor" Placeholder="Enter product details" HeightRequest="100"/>
+
+                        <!-- Price -->
+                        <Label Text="Price:" FontSize="16"/>
+                        <Entry x:Name="PriceEntry" Keyboard="Numeric" Placeholder="Enter price in USHS" TextColor="Green"/>
+
+                        <!-- Negotiable Switch -->
+                        <HorizontalStackLayout>
+                            <Label Text="Negotiable?" VerticalOptions="Center"/>
+                            <Switch x:Name="NegotiableSwitch" IsToggled="false"/>
+                        </HorizontalStackLayout>
+
+
+
+
+                        <!-- Product Image Upload -->
+                        <Label Text="Upload Image:" FontSize="16"/>
+                        <Button x:Name="UploadImageButton" Text="Select New Image" BackgroundColor="Green" TextColor="White" Clicked="SelectImageButton_Clicked"/>
+                        <Image x:Name="ProductImagePreview" HeightRequest="150" Aspect="AspectFill" WidthRequest="100"/>
+
+
+
+                        <!-- Pickup/Delivery Options -->
+                        <Label Text="Delivery Options:" FontSize="16"/>
+                        <HorizontalStackLayout>
+                            <CheckBox x:Name="PickupCheckBox" />
+                            <Label Text="Pick Up and Delivery" FontSize="16" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <CheckBox x:Name="BothCheckBox" />
+                            <Label Text="Pick Up Only" FontSize="16" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <CheckBox x:Name="DeliveryCheckBox" />
+                            <Label Text="Delivery Only" FontSize="16" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+
+                        <!-- Submit & Preview Buttons -->
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+
+                            <Button Text="  Cancel and Close " BackgroundColor="Grey" Clicked="ClosePopupButton_Clicked"
+     CommandParameter="{Binding ProductId}" Grid.Column="0"/>
+                            <Button Text="Save" BackgroundColor="Green" Clicked="SaveButton_Clicked" Grid.Column="1" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </ScrollView>
+            </VerticalStackLayout>
+        </Frame>
+        <!-- LOADING OVERLAY (Same as SignUpPage) -->
+        <ContentView x:Name="LoadingOverlay" IsVisible="False" BackgroundColor="#80000000">
+            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                <Frame BackgroundColor="White" CornerRadius="20" Padding="30" HasShadow="True">
+                    <StackLayout HorizontalOptions="Center" Spacing="20">
+                        <ActivityIndicator Color="#2E7D32" IsRunning="True" WidthRequest="60" HeightRequest="60"/>
+                        <Label Text="Processing, please wait..."
+          FontSize="Medium"
+          TextColor="#212121"
+          HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ContentView>
+    </Grid>
+</ContentPage>

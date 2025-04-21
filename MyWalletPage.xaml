@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.MyWalletPage"
+             Title="MyWalletPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <!-- Wallet Balance -->
+                <Label Text="Wallet Balance" FontSize="20" FontAttributes="Bold" />
+                <Label x:Name="BalanceLabel" Text="UGX 0.00" FontSize="24" TextColor="Green" Padding="10" />
+
+                <!-- Transaction History Section -->
+                <Label Text="Transaction History" FontSize="20" FontAttributes="Bold" Margin="0,20,0,5" />
+
+                <CollectionView x:Name="TransactionCollectionView" ItemsSource="{Binding Transactions}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
+                                <StackLayout>
+
+
+                                    <Label Text="{Binding Amount, StringFormat='UGX {0}'}" FontSize="14" TextColor="Black"/>
+                                    <Label Text="{Binding Type}" FontSize="12" TextColor="Gray"/>
+                                    <Label Text="{Binding Date}" FontSize="12" TextColor="Gray" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Withdraw Button -->
+                <Button Text="Withdraw Funds" FontSize="18" BackgroundColor="RoyalBlue" TextColor="White" Padding="10"
+                    Clicked="WithdrawalButtonClicked" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

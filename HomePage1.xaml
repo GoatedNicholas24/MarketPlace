@@ -1,0 +1,373 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.HomePage1"
+             >
+
+    <Grid RowDefinitions="Auto,Auto,*">
+        <!-- Top Bar -->
+        <HorizontalStackLayout HeightRequest="70" Grid.Row="0" Padding="10" HorizontalOptions="FillAndExpand">
+            <Frame Padding="2" 
+                   BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}" 
+                   CornerRadius="15" 
+                   HasShadow="True" 
+                   HeightRequest="70" 
+                   HorizontalOptions="Center"
+                   WidthRequest="388"
+                   
+                   BorderColor="Transparent">
+                <HorizontalStackLayout Spacing="50">
+                    <HorizontalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
+                        <Frame CornerRadius="30" 
+                           WidthRequest="60" 
+                           HeightRequest="60"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}">
+                            <ImageButton WidthRequest="60" 
+                                    HeightRequest="60" 
+                                    x:Name="avatar_button" 
+                                    Aspect="AspectFill" 
+                                    CornerRadius="10"
+                                     Source="avatar.png"/>
+                        </Frame>
+
+                        <Label Text="Hello," 
+                           x:Name="HomePageGreeting" 
+                           TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}" 
+                           FontSize="25"   
+                           VerticalOptions="Center" 
+                           HorizontalOptions="StartAndExpand"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout VerticalOptions="Center" Spacing="5">
+                        <ImageButton Source="search_icon.png"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                                HeightRequest="30"
+                                WidthRequest="30"
+                                     CornerRadius="5"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Clicked="OnSearchClicked"/>
+                        <Label Text="  Search" HorizontalOptions="End" TextColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+        </HorizontalStackLayout>
+
+        <!-- Category Tabs -->
+        <ScrollView Grid.Row="1" 
+                    Orientation="Horizontal" 
+                    HorizontalScrollBarVisibility="Never"
+                    IsVisible="False">
+            <HorizontalStackLayout x:Name="CategoryButtonsLayout"
+                                 Spacing="10" 
+                                 Padding="10,0,10,10">
+                <Button Text="All" 
+                        CornerRadius="20" 
+                        BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                        TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}"
+                        Padding="20,10"
+                        Clicked="OnCategoryButtonClicked"/>
+                <Button Text="Trending" 
+                        CornerRadius="20" 
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceColor_Light}, Dark={StaticResource SurfaceColor_Dark}}"
+                        TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"
+                        Padding="20,10"
+                        Clicked="OnCategoryButtonClicked"/>
+                <Button Text="New Arrivals" 
+                        CornerRadius="20" 
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceColor_Light}, Dark={StaticResource SurfaceColor_Dark}}"
+                        TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"
+                        Padding="20,10"
+                        Clicked="OnCategoryButtonClicked"/>
+                <Button Text="Deals" 
+                        CornerRadius="20" 
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceColor_Light}, Dark={StaticResource SurfaceColor_Dark}}"
+                        TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"
+                        Padding="20,10"
+                        Clicked="OnCategoryButtonClicked"/>
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <!-- Content -->
+        <RefreshView Grid.Row="2" 
+                    Command="{Binding RefreshCommand}"
+                     RefreshColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                     Refreshing="RefreshButton_Clicked"
+                     IsRefreshing="{Binding IsRefreshing}">
+            
+            <ScrollView>
+                <VerticalStackLayout Padding="10" Spacing="15">
+                    <!-- Featured Section -->
+                    <Label Text="Featured" 
+                           FontSize="20" 
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}" />
+                    
+                    <CollectionView
+                        x:Name="FeaturedCollectionView"
+                        ItemsSource="{Binding FeaturedProducts}"
+                        HeightRequest="200"
+                        ItemsLayout="HorizontalList"
+                        HorizontalOptions="FillAndExpand">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="Transparent" 
+                                       BorderColor="Transparent" 
+                                       HasShadow="True" 
+                                       HeightRequest="190" 
+                                       WidthRequest="300" 
+                                       Padding="0" 
+                                       CornerRadius="20">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnFeaturedTapped"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid HeightRequest="190">
+                                        <Image Source="{Binding Images}" Aspect="AspectFill"/>
+                                        <Border HeightRequest="60" VerticalOptions="End">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0,1">
+                                                    <GradientStop Color="Transparent" Offset="0.1" />
+                                                    <GradientStop Color="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}" Offset="1.0" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        <StackLayout VerticalOptions="End" Padding="10">
+                                            <Label Text="{Binding Name}" 
+                                                   FontSize="18" 
+                                                   TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}" 
+                                                   FontAttributes="Bold"/>
+                                            <Label Text="{Binding Price, StringFormat='USHS {0:N0}'}" 
+                                                   FontSize="16" 
+                                                   TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <!-- Ads Section -->
+                    <Label Text="Sponsored" 
+                           FontSize="20" 
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}" />
+                    
+                    <CarouselView
+                        x:Name="AdsCarouselView"
+                        ItemsSource="{Binding Adverts}"
+                        HeightRequest="200"
+                        Loop="True"
+                        IsScrollAnimated="True"
+                        IsBounceEnabled="True">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="Transparent" 
+                                       BorderColor="Transparent" 
+                                       HasShadow="True" 
+                                       HeightRequest="190" 
+                                       WidthRequest="300" 
+                                       Padding="0" 
+                                       CornerRadius="20">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnAdTapped"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid HeightRequest="190">
+                                        <Image Source="{Binding ImageUrl}" Aspect="AspectFill"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+
+                    <!-- Products Section -->
+                    <Label Text="Popular" 
+                           FontSize="20" 
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}" />
+
+                    <CollectionView
+                        x:Name="ProductsCollectionView"
+                        ItemsSource="{Binding Products}"
+                        SelectionMode="Single"
+                        Margin="0,10,0,10"
+                        RemainingItemsThreshold="5"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="5" HorizontalItemSpacing="1"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="Transparent" 
+                                       CornerRadius="40" 
+                                       Padding="9" 
+                                       BorderColor="Transparent" 
+                                       HeightRequest="290"  
+                                       WidthRequest="200">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnProductTapped" />
+                                    </Frame.GestureRecognizers>
+                                    <Grid HeightRequest="290" WidthRequest="180">
+                                        <Image Source="{Binding Images}" Aspect="AspectFill"/>
+                                        <!-- Quick Actions -->
+                                        <VerticalStackLayout Spacing="10" 
+                      HorizontalOptions="End"
+                      Margin="0,5,0,0">
+                                            <ImageButton Source="grey_heart.png"
+                BackgroundColor="Transparent"
+                HeightRequest="30"
+                WidthRequest="30"
+                Clicked="OnAddToWishlist"/>
+                                            <ImageButton Source="add_to_cart_icon.png"
+                BackgroundColor="Transparent"
+                HeightRequest="30"
+                WidthRequest="30"
+                Clicked="OnAddToCart"/>
+                                        </VerticalStackLayout>
+                                        <!-- Badge for New/Sale -->
+                                        <Frame BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                                               CornerRadius="10"
+                                               Padding="5,2"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Start"
+                                               Margin="10"
+                                               IsVisible="{Binding IsNew}">
+                                            <Label Text="NEW" 
+                                                   FontSize="10"
+                                                   TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}"
+                                                   FontAttributes="Bold"/>
+                                        </Frame>
+
+                                        <!-- Gradient Overlay -->
+                                        <Border HeightRequest="60" VerticalOptions="End">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0,1">
+                                                    <GradientStop Color="Transparent" Offset="0.1" />
+                                                    <GradientStop Color="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}" Offset="1.0" />
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+
+                                        <HorizontalStackLayout VerticalOptions="End" Padding="9"  >
+                                            <StackLayout>
+                                                <Label Text="{Binding Name}" 
+        FontSize="18" 
+        TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}" 
+        FontAttributes="Bold"/>
+                                                <Label Text="{Binding Price, StringFormat='USHS {0:N0}'}" 
+        FontSize="16" 
+        TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}"/>
+
+
+                                            </StackLayout>
+                                              
+                                        </HorizontalStackLayout>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>
+
+        <!-- Bottom Nav -->
+        <Frame 
+               BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="End"
+               CornerRadius="15"
+               Grid.Row="2"
+               Margin="0,0,0,0"
+               Padding="0,0,0,0"
+               BorderColor="Transparent" 
+               HeightRequest="70">
+            <Frame.Shadow>
+                <Shadow Brush="Black"
+                        Offset="0,5"
+                        Opacity="0.1"
+                        Radius="10"/>
+            </Frame.Shadow>
+            <HorizontalStackLayout HorizontalOptions="Center" 
+                                 HeightRequest="60" 
+                                 Spacing="40"
+                                 Padding="20,0">
+                <VerticalStackLayout HorizontalOptions="Center" 
+                                   Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHomeClicked"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                    <ImageButton Source="icons8_home.png" 
+                                BackgroundColor="Transparent" 
+                                HeightRequest="25" 
+                                WidthRequest="25"
+                                 Clicked="OnHomeClicked"/>
+                    <Label Text="Home" 
+                           FontSize="12" 
+                           TextColor="Black" 
+                           HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout HorizontalOptions="Center" 
+                                   Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCartClicked"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                    <ImageButton Source="icons8_cart.png" 
+                                BackgroundColor="Transparent" 
+                                HeightRequest="25" 
+                                WidthRequest="25"
+                                 Clicked="OnCartClicked"/>
+                    <Label Text="Cart" 
+                           FontSize="12" 
+                           TextColor="Black" 
+                           HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout HorizontalOptions="Center" 
+                                   Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ChatIcon_Clicked"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                    <ImageButton Source="chat_icon.png" 
+                                BackgroundColor="Transparent" 
+                                HeightRequest="25" 
+                                WidthRequest="25"
+                                 Clicked="ChatIcon_Clicked"/>
+                    <Label Text="Chat" 
+                           FontSize="12" 
+                           TextColor="Black" 
+                           HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout HorizontalOptions="Center" 
+                                   Spacing="4">
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="HomeMenuButtonClicked"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                    <ImageButton Source="menu.png" 
+                                HeightRequest="25" 
+                                WidthRequest="25" 
+                                BackgroundColor="Transparent"
+                                 Clicked="HomeMenuButtonClicked"/>
+                    <Label Text="Menu" 
+                           FontSize="12" 
+                           TextColor="Black" 
+                           HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <!-- Floating Action Button -->
+        <Frame BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+               HorizontalOptions="End"
+               VerticalOptions="End"
+               CornerRadius="25"
+               Grid.Row="2"
+               Margin="20,0,20,90"
+               BorderColor="Transparent" 
+               HeightRequest="50" 
+               WidthRequest="50"
+               Padding="0">
+            <ImageButton Source="refresh_icon.png" 
+                        BackgroundColor="Transparent" 
+                        Clicked="RefreshButton_Clicked" 
+                        HeightRequest="25" 
+                        WidthRequest="25"/>
+        </Frame>
+    </Grid>
+</ContentPage>
