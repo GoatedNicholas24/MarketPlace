@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.ReturnAndRefundPolicyPage"
+             Title="ReturnAndRefundPolicyPage">
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="15">
+            <Label Text="📜 Return and Refund Policy"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Black" />
+
+            <Label Text="Effective Date: April 10, 2025"
+                   FontSize="14"
+                   TextColor="Gray" />
+
+            <Label Text="✅ Returns"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Black" />
+            <Label Text="• Items can be returned within 3 days of delivery."
+                   FontSize="16" />
+            <Label Text="• Items must be unused, in original condition, and with all tags/packaging."
+                   FontSize="16" />
+            <Label Text="• You must contact the seller or our support team before returning an item."
+                   FontSize="16" />
+
+            <Label Text="💸 Refunds"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Black" />
+            <Label Text="• Refunds will be issued to your original payment method or wallet balance within 5 business days."
+                   FontSize="16" />
+            <Label Text="• Refunds are provided for valid reasons such as:"
+                   FontSize="16" />
+            <Label Text="   - Item not as described"
+                   FontSize="16" />
+            <Label Text="   - Damaged or defective item"
+                   FontSize="16" />
+            <Label Text="   - Wrong item delivered"
+                   FontSize="16" />
+
+            <Label Text="🚫 Non-returnable Items"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Black" />
+            <Label Text="• Perishable or personal goods (e.g., food, cosmetics)."
+                   FontSize="16" />
+            <Label Text="• Digital products/services unless stated otherwise."
+                   FontSize="16" />
+
+            <Label Text="📩 Need Help?"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Black" />
+            <Label Text="For any return or refund assistance, contact us at:"
+                   FontSize="16" />
+            <Label Text="nicholaswatiti23@gmail.com"
+                   FontSize="16"
+                   TextColor="Blue" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

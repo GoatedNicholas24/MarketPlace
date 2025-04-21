@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="MarketPlace.SignInPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}">
+    <Grid>
+        <!-- SIGN IN FORM UI -->
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="15">
+                <Image Source="app_green_market.png" WidthRequest="80" HeightRequest="80" HorizontalOptions="Center"/>
+                <Label Text="LOGIN" FontSize="28" TextColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <Frame Padding="0" BorderColor="Transparent" CornerRadius="10" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceColor_Light}, Dark={StaticResource SurfaceColor_Dark}}">
+                    <Entry x:Name="EmailEntry" Placeholder="Email" PlaceholderColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}" Keyboard="Email" TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}" BackgroundColor="Transparent" WidthRequest="330" FontSize="14"/>
+                </Frame>
+                <HorizontalStackLayout WidthRequest="300" Spacing="2" HorizontalOptions="Center">
+                    <Frame Padding="0" BorderColor="Transparent" CornerRadius="10" BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceColor_Light}, Dark={StaticResource SurfaceColor_Dark}}">
+                        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}" BackgroundColor="Transparent" WidthRequest="280" FontSize="14" PlaceholderColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                    </Frame>
+
+                    <ImageButton x:Name="ToggleVisibilityButton"
+                 Source="make_visible_icon.png"
+                 Clicked="OnTogglePasswordVisibilityClicked"
+                 BackgroundColor="Transparent"
+                 WidthRequest="25"
+                 HeightRequest="25"/>
+                </HorizontalStackLayout>
+
+
+                <!-- SIGN IN BUTTON -->
+                <Button Text="Sign In" BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}" TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}" Clicked="OnSignInClicked" CornerRadius="10" FontSize="16" FontAttributes="Bold"/>
+
+                <!-- REDIRECT TO SIGN UP PAGE BUTTON -->
+                <Button Text="Don't have an account? Sign Up"
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                        Clicked="OnSignUpClicked" FontSize="16"/>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- LOADING OVERLAY -->
+        <ContentView x:Name="LoadingOverlay" IsVisible="False" BackgroundColor="{AppThemeBinding Light=#80000000, Dark=#80FFFFFF}">
+            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                <Frame BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}" CornerRadius="20" Padding="30" HasShadow="True">
+                    <StackLayout HorizontalOptions="Center" Spacing="20">
+                        <ActivityIndicator Color="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}" IsRunning="True" WidthRequest="60" HeightRequest="60"/>
+                        <Label Text="Processing, please wait..."
+                               FontSize="Medium"
+                               TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ContentView>
+    </Grid>
+
+</ContentPage>

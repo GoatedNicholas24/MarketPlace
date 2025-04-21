@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Greendash1.TermsAndConditions"
+             Title="TermsAndConditions">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Terms and Conditions"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Effective Date: April 6th, 2025"
+                   FontSize="14"
+                   TextColor="Gray"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Welcome to Market Place! These Terms and Conditions govern your use of our mobile application. By using the app, you agree to comply with and be bound by these Terms."
+                   FontSize="16"
+                   LineHeight="1.5" />
+
+                <Label Text="1. Acceptance of Terms"
+                   FontAttributes="Bold"
+                   FontSize="18" />
+                <Label Text="By accessing or using the app, you agree to be bound by these Terms. If you do not agree, do not use the app." 
+                   FontSize="16"
+                   LineHeight="1.5" />
+
+                <Label Text="2. User Responsibilities"
+                   FontAttributes="Bold"
+                   FontSize="18" />
+                <Label Text="You agree not to misuse the app or engage in unlawful activities. You are responsible for your account and the content you post." 
+                   FontSize="16"
+                   LineHeight="1.5" />
+
+                <Label Text="3. Payments and Transactions"
+                   FontAttributes="Bold"
+                   FontSize="18" />
+                <Label Text="All payments are handled through secure third-party services. We are not liable for payment processing issues." 
+                   FontSize="16"
+                   LineHeight="1.5" />
+
+                <Label Text="4. Delivery and Fees"
+                   FontAttributes="Bold"
+                   FontSize="18" />
+                <Label Text="Delivery fees vary depending on distance and will be calculated at checkout." 
+                   FontSize="16"
+                   LineHeight="1.5" />
+
+                <Label Text="5. Changes to Terms"
+                   FontAttributes="Bold"
+                   FontSize="18" />
+                <Label Text="We may update these Terms from time to time. Continued use of the app means you accept the updated Terms." 
+                   FontSize="16"
+                   LineHeight="1.5" />
+
+                <Label Text="6. Contact Us"
+                   FontAttributes="Bold"
+                   FontSize="18" />
+                <Label Text="If you have any questions or concerns regarding these Terms, contact us at: nicholaswatiti23@gmail.com" 
+                   FontSize="16"
+                   LineHeight="1.5" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

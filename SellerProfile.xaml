@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.SellerProfile">
+    <Grid RowDefinitions="Auto,*">
+    <!-- Seller Information -->
+    <Frame Grid.Row="0"
+               Padding="16"
+               CornerRadius="12"
+               BackgroundColor="#FFF"
+               HasShadow="True"
+               Margin="16">
+        <HorizontalStackLayout Spacing="16">
+                <Frame HeightRequest="80" WidthRequest="80" CornerRadius="50">
+                    <Image Source="{Binding SellerAvatarUrl}"
+              WidthRequest="80"
+              HeightRequest="80"
+              Aspect="AspectFill"
+          x:Name="sellerAvatar"
+              />
+                </Frame>   
+         
+            <VerticalStackLayout>
+                <Label Text="{Binding SellerName}"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                       x:Name="sellerName"
+                       TextColor="Black"/>
+                <Label Text="{Binding Email}"
+                           FontSize="14"
+                           TextColor="Gray"
+                       x:Name="sellerEmail"/>
+            </VerticalStackLayout>
+            
+        </HorizontalStackLayout>
+    </Frame>
+
+    <!-- Product List -->
+    <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Products}"
+                        Margin="16"
+                    x:Name="ProductsView"
+                    >
+            <CollectionView.ItemsLayout>
+
+                <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="2" HorizontalItemSpacing="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame Padding="12"
+                           CornerRadius="8"
+                           BackgroundColor="#FFF"
+                           HasShadow="True"
+                           Margin="0,0,0,16"
+                       BorderColor="Green">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnProductTapped" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="8">
+                           
+                        <Image Source="{Binding Images}"
+                                   HeightRequest="200"
+                                   Aspect="AspectFill"
+                                    />
+                        <Label Text="{Binding Name}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                               TextColor="Black"/>
+                        <Label Text="{Binding Price }"
+                                   FontSize="18"
+                                   TextColor="Green"/>
+                        <Label Text="{Binding Description}"
+                                   FontSize="14"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="2"
+                               TextColor="Grey"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    </Grid>
+</ContentPage>

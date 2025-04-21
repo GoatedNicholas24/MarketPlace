@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.Settings"
+             
+             BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#1A1A1A}">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Header -->
+        <Frame Grid.Row="0" 
+               Padding="15" 
+               CornerRadius="0" 
+               BackgroundColor="Transparent"
+               HorizontalOptions="Center"
+               HasShadow="True">
+            <HorizontalStackLayout>
+                <Label Text="Settings" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <!-- Content -->
+        <ScrollView Grid.Row="1" Padding="15">
+            <VerticalStackLayout Spacing="20">
+                <!-- Account Section -->
+                <Frame CornerRadius="15" 
+                       Padding="0" 
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#2D2D2D}"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="0">
+                        <!-- Section Header -->
+                        <Frame Padding="15" 
+                               BackgroundColor="{AppThemeBinding Light=#E3F2FD, Dark=#0D47A1}"
+                               CornerRadius="15 ">
+                            <HorizontalStackLayout>
+                                <Image Source="account_icon.png"
+                                       HeightRequest="24"
+                                       WidthRequest="24"
+                                       VerticalOptions="Center"/>
+                                <Label Text="Account" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"
+                                       TextColor="{AppThemeBinding Light=#1565C0, Dark=White}"
+                                       VerticalOptions="Center"
+                                       Margin="10,0,0,0"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+
+                        <!-- Section Content -->
+                        <VerticalStackLayout Padding="15" Spacing="15">
+                            <Button Text="Edit Profile" 
+                                    Clicked="OnEditProfileClicked"
+                                    Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button Text="Change Password" 
+                                    Clicked="OnChangePasswordClicked"
+                                    Style="{StaticResource SettingsButtonStyle}"/>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Preferences Section -->
+                <Frame CornerRadius="15" 
+                       Padding="0" 
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#2D2D2D}"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="0">
+                        <!-- Section Header -->
+                        <Frame Padding="15" 
+                               BackgroundColor="{AppThemeBinding Light=#FFF3E0, Dark=#E65100}"
+                               CornerRadius="15 ">
+                            <HorizontalStackLayout>
+                                <Image Source="preferences_icon.png"
+                                       HeightRequest="24"
+                                       WidthRequest="24"
+                                       VerticalOptions="Center"/>
+                                <Label Text="Preferences" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"
+                                       TextColor="{AppThemeBinding Light=#E65100, Dark=White}"
+                                       VerticalOptions="Center"
+                                       Margin="10,0,0,0"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+
+                        <!-- Section Content -->
+                        <VerticalStackLayout Padding="15" Spacing="15">
+                            <Button Text="Theme" 
+                                    Clicked="OnChangeThemeClicked"
+                                    Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button Text="Return and Refund Policy" 
+                                    Clicked="OnPolicyClicked"
+                                    Style="{StaticResource SettingsButtonStyle}"/>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Support Section -->
+                <Frame CornerRadius="15" 
+                       Padding="0" 
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#2D2D2D}"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="0">
+                        <!-- Section Header -->
+                        <Frame Padding="15" 
+                               BackgroundColor="{AppThemeBinding Light=#F3E5F5, Dark=#4A148C}"
+                               CornerRadius="15 ">
+                            <HorizontalStackLayout>
+                                <Image Source="support_icon.png"
+                                       HeightRequest="24"
+                                       WidthRequest="24"
+                                       VerticalOptions="Center"/>
+                                <Label Text="Support and Feedback" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"
+                                       TextColor="{AppThemeBinding Light=#7B1FA2, Dark=White}"
+                                       VerticalOptions="Center"
+                                       Margin="10,0,0,0"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+
+                        <!-- Section Content -->
+                        <VerticalStackLayout Padding="15" Spacing="15">
+                            <Button Text="Feedback / Rate the App" 
+                                    Clicked="OnFeedbackClicked"
+                                    Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button Text="Contact Support" 
+                                    Clicked="OnContactSupportClicked"
+                                    Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button Text="Report a Bug" 
+                                    Clicked="OnReportBugClicked"
+                                    Style="{StaticResource SettingsButtonStyle}"/>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- About Section -->
+                <Frame CornerRadius="15" 
+                       Padding="0" 
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#2D2D2D}"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="0">
+                        <!-- Section Header -->
+                        <Frame Padding="15" 
+                               BackgroundColor="{AppThemeBinding Light=#E8F5E9, Dark=#1B5E20}"
+                               CornerRadius="15 ">
+                            <HorizontalStackLayout>
+                                <Image Source="about_icon.png"
+                                       HeightRequest="24"
+                                       WidthRequest="24"
+                                       VerticalOptions="Center"/>
+                                <Label Text="About" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"
+                                       TextColor="{AppThemeBinding Light=#2E7D32, Dark=White}"
+                                       VerticalOptions="Center"
+                                       Margin="10,0,0,0"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+
+                        <!-- Section Content -->
+                        <VerticalStackLayout Padding="15" Spacing="10">
+                            <Label Text="Version: 1.0.0" 
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light=#757575, Dark=#BDBDBD}"/>
+                            <BoxView HeightRequest="1" 
+                                    BackgroundColor="{AppThemeBinding Light=#E0E0E0, Dark=#424242}"
+                                    Margin="0,10,0,10"/>
+                            <Label Text="Credits" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light=#212121, Dark=White}"/>
+                            <Label Text="Victor M. Joshua" 
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light=#757575, Dark=#BDBDBD}"/>
+                            <Label Text="Martin Wefula" 
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light=#757575, Dark=#BDBDBD}"/>
+                            <Label Text="Developed by Watiti Nicholas" 
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light=#757575, Dark=#BDBDBD}"/>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.TemporaryChatDetailsPage"
+             Title="TemporaryChatDetailsPage">
+    
+        <StackLayout Padding="10">
+
+            <CollectionView x:Name="ChatMessagesView" ItemsSource="{Binding _messages}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" HasShadow="False"
+                           BackgroundColor="{Binding senderEmail, Converter={StaticResource SenderBackgroundConverter}}">
+                            <StackLayout>
+                                <Label Text="{Binding Content}" 
+                                   TextColor="Black" 
+                                   FontSize="Medium" 
+                                   HorizontalOptions="Start" 
+                                   HorizontalTextAlignment="Start"/>
+                                <Label Text="{Binding created_at}" 
+                                   FontSize="Micro" 
+                                   TextColor="Gray" 
+                                   HorizontalOptions="End" 
+                                   HorizontalTextAlignment="End"/>
+                            </StackLayout>
+                            <!--Frame.ContextActions>
+                                <MenuItem Text="Delete" 
+                                      Clicked="DeleteMessage_Clicked" 
+                                      IsDestructive="True" 
+                                      CommandParameter="{Binding .}"/>
+                            </Frame.ContextActions=-->
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+                <Entry x:Name="MessageEntry" Placeholder="Type a message..." HorizontalOptions="FillAndExpand"/>
+                <Button Text="Send" Clicked="SendButton_Clicked"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.RatingAndFeedBackPage"
+             Title="RatingAndFeedBackPage">
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="20">
+            <Label Text="⭐⭐⭐⭐⭐"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="Black" />
+
+            <StackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+                <!-- Title: Please join our WhatsApp group to give feedback -->
+                <Label Text="Please join our WhatsApp group"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="Black"
+               LineBreakMode="WordWrap"/>
+
+                <Label Text="to give feedback."
+               FontSize="20"
+               HorizontalOptions="Center"
+               TextColor="Black"
+               LineBreakMode="WordWrap"/>
+
+                <!-- Styled clickable link for WhatsApp -->
+                <Button Text="Click here to join!"
+               FontSize="20"
+               HorizontalOptions="Center"
+               TextColor="Green"
+               
+              />
+
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

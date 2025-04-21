@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class=" MarketPlace.SellerRegistrationPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+     
+        <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+
+            <!-- Personal Information -->
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="{DynamicResource FrameBackgroundColor}">
+                <StackLayout>
+                    <Label Text="Personal Information" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="Full Name" x:Name="FullnameEntry"/>
+                    <Entry Placeholder="Phone Number" Keyboard="Telephone" x:Name="PrimaryPhoneEntry"/>
+                    <Entry Placeholder="Other Phone Number" Keyboard="Telephone" x:Name="SecondaryPhoneEntry"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Business Information -->
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="{DynamicResource FrameBackgroundColor}">
+                <StackLayout>
+                    <Label Text="Business Information" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="Business Name" x:Name="BusinessNameEntry"/>
+                    <Picker Title="Business Type" x:Name="BusinessTypeEntry">
+                        <Picker.Items>
+                            <x:String>Individual</x:String>
+                            <x:String>Sole Proprietor</x:String>
+                            <x:String>Company</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                </StackLayout>
+            </Frame>
+
+            <!-- Operating Hours -->
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="{DynamicResource FrameBackgroundColor}">
+                <StackLayout>
+                    <Label Text="Operating Hours" FontSize="18" FontAttributes="Bold"/>
+                    <CollectionView ItemsSource="{Binding OperatingHours}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Label Text="{Binding Day}" WidthRequest="100"/>
+                                    <TimePicker Time="{Binding OpenTime}" Format="hh:mm tt"/>
+                                    <TimePicker Time="{Binding CloseTime}" Format="hh:mm tt"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
+
+
+            <!-- Location & Contact Details -->
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="{DynamicResource FrameBackgroundColor}">
+                <StackLayout>
+                    <Label Text="Location  Details" FontSize="18" FontAttributes="Bold"/>
+
+
+                    <Picker Title="Location" x:Name="LocationPicker">
+                        <Picker.Items>
+
+                            <x:String>Abuja</x:String>
+                            <x:String>Bwegiragye</x:String>
+                            <x:String>Lagos</x:String>
+                            <x:String>Mbarara</x:String>
+                            <x:String>Bushenyi</x:String>
+                            <x:String>Kizinda</x:String>
+                            <x:String>Kabwohe</x:String>
+                            <x:String>KIU Ishaka</x:String>
+
+                            <x:String>Ishaka Town</x:String>
+
+
+
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="Your exact location right now will be used to calculate delivery fees" FontSize="13" FontAttributes="Italic"/>
+                    <Button Text="Capture Location" Clicked="OnCaptureLocationClicked"/>
+                    <Label x:Name="LatitudeLabel" Text="Latitude: --"/>
+                    <Label x:Name="LongitudeLabel" Text="Longitude: --"/>
+                    <Entry Placeholder="Physical Address(More Details on location)" x:Name="PhysicalAddressEntry"/>
+
+                </StackLayout>
+            </Frame>
+
+
+            <!-- Store Preferences -->
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="{DynamicResource FrameBackgroundColor}">
+                <StackLayout>
+                    <Label Text="Store Preferences" FontSize="18" FontAttributes="Bold"/>
+
+                    <Picker Title="Categories of Products to be Sold" x:Name="ItemCategory">
+                        <Picker.Items>
+                            <x:String>Clothing and Fashion</x:String>
+                            <x:String>Electronics and Gadgets</x:String>
+                            <x:String>Academic Supplies</x:String>
+                            <x:String>Food and Drinks</x:String>
+                            <x:String>Room and Hostel</x:String>
+                            <x:String>Health and Beauty</x:String>
+                            <x:String>Sports and Fitness</x:String>
+                            <x:String>Services</x:String>
+                            <x:String>Others</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Editor Placeholder="Write a brief description of your business" x:Name ="BusinessDescriptionEditor"  HeightRequest="100"/>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox x:Name="TermsCheckBox"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="I agree to the "/>
+                                <Span Text="Terms and Conditions" TextDecorations="Underline" TextColor="Blue">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenTermsCommand}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+            </Frame>
+            <Frame>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Wallet PIN"/>
+                    <Entry Keyboard="Numeric" Placeholder="Enter you Wallet Pin" x:Name="PINEntry"/>
+                    <Label Text="Keep this pin safe and do not share it"/>
+                </StackLayout>
+                </Frame>
+                <!-- Submit Button -->
+                <Button Text="Register" BackgroundColor="Green" TextColor="White" Clicked="OnRegisterButtonClicked"/>
+            </StackLayout>
+        </ScrollView>
+         
+    
+
+</ContentPage>

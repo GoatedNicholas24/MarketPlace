@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="MarketPlace.SearchPage"
+             Title="Search"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="10">
+        <!-- Search Bar -->
+        <Frame Grid.Row="0" 
+               Padding="15" 
+               BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}" 
+               CornerRadius="15" 
+               HasShadow="True">
+            <SearchBar x:Name="SearchBar" 
+                      Placeholder="Search for products..."  
+                      PlaceholderColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"
+                      TextColor="{AppThemeBinding Light={StaticResource TextColor_Light}, Dark={StaticResource TextColor_Dark}}"
+                      BackgroundColor="Transparent"
+                      CancelButtonColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                      TextChanged="SearchBar_TextChanged" />
+        </Frame>
+
+        <!-- Categories -->
+        <ScrollView Grid.Row="1" 
+                    Orientation="Horizontal" 
+                    HorizontalScrollBarVisibility="Never"
+                    HeightRequest="60">
+            <HorizontalStackLayout x:Name="CategoriesLayout" 
+                                 Spacing="10" 
+                                 Padding="10">
+                <!-- Dynamic Categories -->
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <!-- Products Grid -->
+        <RefreshView Grid.Row="2" 
+                    Command="{Binding RefreshCommand}"
+                    RefreshColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                    Refreshing="RefreshButton_Clicked"
+                    IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView x:Name="ProductsCollectionView" 
+                          ItemsSource="{Binding Products}" 
+                          SelectionMode="None"
+                          Margin="0,10,0,10">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" 
+                                   Span="2" 
+                                   VerticalItemSpacing="10" 
+                                   HorizontalItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}" 
+                               CornerRadius="15" 
+                               Padding="0" 
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnProductTapped"/>
+                            </Frame.GestureRecognizers>
+                            <Grid HeightRequest="290" WidthRequest="180">
+                                <!-- Product Image -->
+                                <Image Source="{Binding Images}" 
+                                       Aspect="AspectFill"/>
+                                <Frame BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                                               CornerRadius="10"
+                                               Padding="5,2"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Start"
+                                               Margin="10"
+                                               IsVisible="{Binding IsNew}">
+                                    <Label Text="NEW" 
+                                                   FontSize="10"
+                                                   TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}"
+                                                   FontAttributes="Bold"/>
+                                </Frame>
+
+                                <!-- Quick Actions -->
+                                <VerticalStackLayout Spacing="10" 
+                                                   HorizontalOptions="End"
+                                                   Margin="0,5,0,0">
+                                    <ImageButton Source="grey_heart.png"
+                                               BackgroundColor="Transparent"
+                                               HeightRequest="30"
+                                               WidthRequest="30"
+                                               Clicked="OnAddToWishlist"/>
+                                    <ImageButton Source="add_to_cart_icon.png"
+                                               BackgroundColor="Transparent"
+                                               HeightRequest="30"
+                                               WidthRequest="30"
+                                               Clicked="OnAddToCart"/>
+                                </VerticalStackLayout>
+                                
+                                <!-- Gradient Overlay -->
+                                <Border Stroke="Transparent" HeightRequest="60" VerticalOptions="End">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0,1">
+                                            <GradientStop Color="Transparent" Offset="0.1" />
+                                            <GradientStop Color="Black" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+
+                                <!-- Product Info -->
+                                <VerticalStackLayout VerticalOptions="End" 
+                                                    Padding="10" 
+                                                    Spacing="5">
+                                    <Label Text="{Binding Name}" 
+                                           FontSize="16" 
+                                           TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}" 
+                                           FontAttributes="Bold"
+                                           LineBreakMode="TailTruncation"/>
+                                    <Label Text="{Binding Price, StringFormat='USHS {0:N0}'}" 
+                                           FontSize="14" 
+                                           TextColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

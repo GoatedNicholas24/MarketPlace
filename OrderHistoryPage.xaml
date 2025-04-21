@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MarketPlace"
+             xmlns:converters="clr-namespace:MarketPlace.Converters"
+             x:Class="MarketPlace.OrderHistoryPage"
+             Title="Order History"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Header -->
+        <Frame Grid.Row="0" 
+               Padding="16"
+               Margin="16,16,16,8"
+               CornerRadius="12"
+               BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+               HasShadow="True">
+            <VerticalStackLayout>
+                <Label Text="Order History"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                <Label Text="Your past orders and their status"
+                       FontSize="14"
+                       TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Orders List -->
+        <RefreshView Grid.Row="1"
+                      
+                     Refreshing="RefreshOrders">
+            <CollectionView  
+                          EmptyView="No orders found"
+                          SelectionMode="None"
+                            x:Name="OrdersView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="16,8"
+                               Padding="0"
+                               CornerRadius="12"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+                               HasShadow="True">
+                            <Grid ColumnDefinitions="Auto,*,Auto"
+                                  RowDefinitions="Auto,Auto,Auto,Auto"
+                                  Padding="12">
+                                <!-- Order Status Badge -->
+                                <Frame Grid.Row="0"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="3"
+                                       Padding="8,4"
+                                       CornerRadius="6"
+                                       BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}"
+                                       HorizontalOptions="Start">
+                                    <Label Text="{Binding status}"
+                                           FontSize="12"
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"
+                                    />
+                                </Frame>
+
+                                <!-- Order Details -->
+                                <VerticalStackLayout Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="3"
+                                                    Margin="0,8,0,0">
+                                    <Label Text="{Binding ProductName}"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                                    <Label Text="{Binding amount, StringFormat='Total: UGX {0:N0}'}"
+                                           FontSize="14"
+                                           TextColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"/>
+                                </VerticalStackLayout>
+
+                                <!-- Order Info -->
+                                <VerticalStackLayout Grid.Row="2"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="3"
+                                                    Margin="0,8,0,0">
+                                    <Label Text="{Binding buyer_name}"
+                                           FontSize="14"
+                                           TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                                    <Label Text="{Binding created_at, Converter={StaticResource DateTimeToPrettyDateConverter}}"
+                                           FontSize="12"
+                                           TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                                </VerticalStackLayout>
+
+                                <!-- Action Buttons -->
+                                <HorizontalStackLayout Grid.Row="3"
+                                                      Grid.Column="0"
+                                                      Grid.ColumnSpan="3"
+                                                      Margin="0,8,0,0"
+                                                      Spacing="8">
+                                    <Button Text="Chat"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:OrderHistoryPage}}, Path=BindingContext.ChatCommand}"
+                                            CommandParameter="{Binding .}"
+                                             BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                                            TextColor="White"
+                                            CornerRadius="8"
+                                            BorderColor="Gray"/>
+                                    <Button Text="Cancel"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:OrderHistoryPage}}, Path=BindingContext.CancelCommand}"
+                                            CommandParameter="{Binding .}"
+                                             
+                                            BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                                            TextColor="White"
+                                            CornerRadius="8"/>
+                                    <Button Text="Confirm"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:OrderHistoryPage}}, Path=BindingContext.ConfirmCommand}"
+                                            CommandParameter="{Binding .}"
+                                            
+                        BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                                            TextColor="White"
+                                            CornerRadius="8"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>
