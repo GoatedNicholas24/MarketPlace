@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MarketPlace"
+             x:Class="MarketPlace.WishListPagexaml"
+             Title="Wishlist"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColor_Light}, Dark={StaticResource BackgroundColor_Dark}}">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Header -->
+        <Frame Grid.Row="0" 
+               Padding="16"
+               Margin="16,16,16,8"
+               CornerRadius="12"
+               BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+               HasShadow="True">
+            <VerticalStackLayout>
+                <Label Text="My Wishlist"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"/>
+                <Label Text="Your saved items"
+                       FontSize="14"
+                       TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Wishlist Items -->
+        <RefreshView Grid.Row="1"
+                     Command="{Binding RefreshCommand}"
+                     Refreshing="RefreshWishList">
+            <CollectionView  
+                          EmptyView="No items in your wishlist"
+                          SelectionMode="None"
+                            x:Name="WishlistItemsView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="16,8"
+                               Padding="0"
+                               CornerRadius="12"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource CardColor_Light}, Dark={StaticResource CardColor_Dark}}"
+                               HasShadow="True">
+                            <Grid ColumnDefinitions="Auto,*,Auto"
+                                  RowDefinitions="Auto,Auto,Auto">
+                                <!-- Product Image -->
+                                <ImageButton Grid.Row="0"
+                                       Grid.RowSpan="3"
+                                       Grid.Column="0"
+                                       Source="{Binding Images}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="120"
+                                       WidthRequest="120">
+                                    <ImageButton.Clip>
+                                        <RoundRectangleGeometry CornerRadius="12,0,0,12"/>
+                                    </ImageButton.Clip>
+                                </ImageButton>
+
+                                <!-- Product Info -->
+                                <VerticalStackLayout Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Grid.ColumnSpan="2"
+                                                    Margin="12,12,12,0">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                                    <Label Text="{Binding Price, StringFormat='UGSHS {0:N2}'}"
+                                           FontSize="14"
+                                           TextColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"/>
+                                </VerticalStackLayout>
+
+                                <!-- Quick Actions -->
+                                <HorizontalStackLayout Grid.Row="1"
+                                                      Grid.Column="1"
+                                                      Grid.ColumnSpan="2"
+                                                      Margin="12,8,12,8"
+                                                      Spacing="8">
+                                    <Button Text="Add to Cart"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:WishListPagexaml}}, Path=BindingContext.AddToCartCommand}"
+                                            CommandParameter="{Binding .}"
+                                           BackgroundColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}" 
+                                    TextColor="White"
+                                            CornerRadius="8"/>
+                                    <Button Text="Remove"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:WishListPagexaml}}, Path=BindingContext.RemoveFromWishlistCommand}"
+                                            CommandParameter="{Binding .}"
+                                            BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryColor_Light}, Dark={StaticResource PrimaryColor_Dark}}"
+                                            TextColor="White"
+                                            CornerRadius="8"/>
+                                </HorizontalStackLayout>
+
+                                <!-- Description -->
+                                <Label Grid.Row="2"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="2"
+                                       Text="{Binding Description}"
+                                       FontSize="12"
+                                       Margin="12,0,12,12"
+                                       MaxLines="2"
+                                       LineBreakMode="TailTruncation"
+                                       TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColor_Light}, Dark={StaticResource SecondaryTextColor_Dark}}"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

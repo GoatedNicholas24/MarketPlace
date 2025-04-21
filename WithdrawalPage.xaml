@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.WithdrawalPage"
+             Title="WithdrawalPage">
+    <VerticalStackLayout>
+        <Entry Placeholder="Amount" x:Name="AmountEntry"/>
+        
+        <Entry Placeholder="Phone Number" x:Name="PhoneEntry"/>
+        <Label Text="You will receive the money on this number"/>
+        <Entry Placeholder="Enter your Wallet Pin" IsPassword="True" x:Name="PINEntry"/>
+        <Button Text="Proceed" Clicked="ProceedClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

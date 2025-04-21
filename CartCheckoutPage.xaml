@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarketPlace.CartCheckoutPage"
+             BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#212529}">
+    <Grid>
+        <ScrollView Orientation="Vertical">
+            <VerticalStackLayout Spacing="16" Padding="20">
+                <!-- Header -->
+                <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=#343A40}"
+                       Padding="16" CornerRadius="10" HasShadow="True">
+                    <Label Text="Cart Checkout" 
+                           FontSize="24" 
+                           FontAttributes="Bold" 
+                           TextColor="{AppThemeBinding Light=#212529, Dark=White}"
+                           HorizontalOptions="Center"/>
+                </Frame>
+
+                <!-- Receiver Details Section -->
+                <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=#343A40}"
+                       Padding="20" CornerRadius="10" HasShadow="True">
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="Receiver Details" 
+                               FontSize="20" 
+                               FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"/>
+
+                        <Entry x:Name="ReceiverNameEntry" 
+                               Placeholder="Full Name"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}"/>
+
+                        <Entry x:Name="ReceiverPhoneEntry" 
+                               Placeholder="Receiver's Phone Number"
+                               Keyboard="Telephone"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}"/>
+
+                        <Frame Padding="0" BackgroundColor="Transparent" BorderColor="{AppThemeBinding Light=#DEE2E6, Dark=#495057}">
+                            <Picker Title="Location" 
+                                    x:Name="ReceiverLocationLabel"
+                                    BackgroundColor="Transparent"
+                                    FontSize="16"
+                                    TextColor="{AppThemeBinding Light=#212529, Dark=White}">
+                                <Picker.Items>
+                                    <x:String>Abuja</x:String>
+                                    <x:String>Bwegiragye</x:String>
+                                    <x:String>Lagos</x:String>
+                                    <x:String>Mbarara</x:String>
+                                    <x:String>Bushenyi</x:String>
+                                    <x:String>Kizinda</x:String>
+                                    <x:String>Kabwohe</x:String>
+                                    <x:String>KIU Ishaka</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Frame>
+
+                        <Entry x:Name="DetailedLocation" 
+                               Placeholder="Enter more details on exact location"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}"/>
+
+                        <Button Text="Confirm Location"
+                                Clicked="LocationCaptureClicked"
+                                BackgroundColor="{StaticResource Primary}"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HeightRequest="50"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Payment Method Section -->
+                <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=#343A40}"
+                       Padding="20" CornerRadius="10" HasShadow="True">
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="Choose Payment Method" 
+                               FontSize="20" 
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"/>
+
+                        <Entry x:Name="PaymentPhoneEntry" 
+                               Placeholder="Payment Phone Number"
+                               Keyboard="Telephone"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}"/>
+
+                        <HorizontalStackLayout Spacing="16" HorizontalOptions="Center">
+                            <Button Text="Mobile Money"
+                                    Clicked="MobileMoneyPay_Clicked"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    TextColor="White"
+                                    CornerRadius="8"
+                                    WidthRequest="150"
+                                    HeightRequest="50"/>
+                            
+                            <Button Text="Cash On Delivery"
+                                    Clicked="CashOnDelivery_Clicked"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    TextColor="White"
+                                    CornerRadius="8"
+                                    WidthRequest="150"
+                                    HeightRequest="50"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Mobile Money Frame -->
+                <Frame x:Name="MobileMoneyFrame" 
+                       IsVisible="False"
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#343A40}"
+                       Padding="20" CornerRadius="10" HasShadow="True">
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="Mobile Money Payment"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"/>
+
+                        <BoxView Color="{AppThemeBinding Light=#DEE2E6, Dark=#495057}"
+                                 HeightRequest="1"
+                                 Margin="0,8"/>
+
+                        <Label x:Name="ProductsTotalLabel" 
+                               Text="Products Total: 0 UGX"
+                               FontSize="16"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"/>
+                        <Label x:Name="DeliveryTotalLabel" 
+                               Text="Delivery Fee: 0 UGX"
+                               FontSize="16"
+                               TextColor="{StaticResource Primary}"/>
+                        <Label x:Name="TotalPayableLabel" 
+                               Text="Total Payable: 0 UGX"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"/>
+
+                        <Button Text="Pay Now"
+                                Clicked="OnPayNowClicked"
+                                BackgroundColor="{StaticResource Primary}"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HeightRequest="50"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Cash on Delivery Frame -->
+                <Frame x:Name="CashOnDeliveryFrame"
+                       IsVisible="False"
+                       BackgroundColor="{AppThemeBinding Light=White, Dark=#343A40}"
+                       Padding="20" CornerRadius="10" HasShadow="True">
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="Cash On Delivery"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"/>
+
+                        <BoxView Color="{AppThemeBinding Light=#DEE2E6, Dark=#495057}"
+                                 HeightRequest="1"
+                                 Margin="0,8"/>
+
+                        <Label x:Name="ProductsTotalLabel_COD"
+                               Text="Products Total: 0 UGX"
+                               FontSize="16"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"/>
+                        <Label x:Name="DeliveryTotalLabel_COD"
+                               Text="Delivery Fee: 0 UGX"
+                               FontSize="16"
+                               TextColor="{StaticResource Primary}"/>
+                        <Label x:Name="TotalPayableLabel_COD"
+                               Text="Total Payable: 0 UGX"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="{AppThemeBinding Light=#212529, Dark=White}"/>
+
+                        <Label Text="Only the Delivery Fee will be deducted from your mobile money account"
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}"/>
+
+                        <Button Text="Place Order"
+                                Clicked="OnPlaceOrderCODClicked"
+                                BackgroundColor="{StaticResource Primary}"
+                                TextColor="White"
+                                CornerRadius="8"
+                                HeightRequest="50"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

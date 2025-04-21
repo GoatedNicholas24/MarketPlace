@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="250" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+    <!-- Store Icon -->
+    <g transform="translate(25, 20)">
+        <!-- Store Building -->
+        <path d="M0 40 L150 40 L150 150 L0 150 Z" 
+              fill="white"/>
+        
+        <!-- Store Awning -->
+        <path d="M-10 40 L160 40 L150 20 L0 20 Z" 
+              fill="white"/>
+        
+        <!-- Store Door -->
+        <rect x="60" y="80" width="30" height="70" 
+              fill="#2ECC71"/>
+        
+        <!-- Store Windows -->
+        <rect x="10" y="60" width="40" height="40" 
+              fill="#2ECC71"/>
+        <rect x="100" y="60" width="40" height="40" 
+              fill="#2ECC71"/>
+    </g>
+    
+    <!-- Text "Market Place" -->
+    <text x="100" y="220" 
+          font-family="Arial, sans-serif" 
+          font-size="24" 
+          font-weight="bold" 
+          text-anchor="middle" 
+          fill="white">
+        Market Place
+    </text>
+</svg> 
